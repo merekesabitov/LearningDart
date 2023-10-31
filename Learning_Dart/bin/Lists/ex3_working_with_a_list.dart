@@ -21,19 +21,23 @@
 8. union list: [10, 20, 30, 4, 5, 6, 7, 8, 9, 4, 5, 6]
 */
 
+
 final list = [8, 2, 5, 4, 3, 9, 7, 1, 6];
 
 
 void main() {
   //#1
-  print('list is $list');
+  print('#1 list is $list');
   //#2
-  print('list length is ${list.length} elements');
+  print('#2 list length is ${list.length} elements');
   //#3
   list.sort((b, a) => a.compareTo(b));
-  print('descending sorted list: $list');
+  print('#3 descending sorted list: $list');
   //#4
-  final newlist = [];
-  newlist.addAll([4, 5, 6, 7, 8, 9]]);
+  final subList = list.sublist(0, 6);
+  subList.sort((a, b) => a.compareTo(b));
+  print('#4 sorted sublist with length of 5 elements: ${subList}');
+  //#5
+  print('#5 index of an value "7" in list is ${subList.indexOf(7)}');
   
 }
