@@ -22,22 +22,38 @@
 */
 
 
-final list = [8, 2, 5, 4, 3, 9, 7, 1, 6];
+var list = [8, 2, 5, 4, 3, 9, 7, 1, 6];
 
 
 void main() {
   //#1
   print('#1 list is $list');
+
   //#2
   print('#2 list length is ${list.length} elements');
+
   //#3
   list.sort((b, a) => a.compareTo(b));
   print('#3 descending sorted list: $list');
+
   //#4
-  final subList = list.sublist(0, 6);
+  var subList = list.sublist(0, 6);
   subList.sort((a, b) => a.compareTo(b));
   print('#4 sorted sublist with length of 5 elements: ${subList}');
+
   //#5
   print('#5 index of an value "7" in list is ${subList.indexOf(7)}');
+
+  //6
+  subList.removeWhere((element) => element > 6);
+  print('#6 list with removed values from 7 to 9: $subList');
+
+  //7
+  list.sort((a, b) => a.compareTo(b));
+  list.replaceRange(0, 3, [10, 20, 30]);
+  print('#7 sorted list with replaced values [1, 2, 3, ...] => [10, 20, 30, ...]: $list');
   
+  //8
+  list = [...list, ...subList];
+  print('#8 union list: $list');
 }
