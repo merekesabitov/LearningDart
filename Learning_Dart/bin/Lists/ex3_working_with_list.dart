@@ -39,7 +39,7 @@ void main() {
   //#4
   var subList = list.sublist(0, 6);
   subList.sort((a, b) => a.compareTo(b));
-  print('#4 sorted sublist with length of 5 elements: ${subList}');
+  print('#4 sorted sublist with length of 5 elements: $subList');
 
   //#5
   print('#5 index of an value "7" in list is ${subList.indexOf(7)}');

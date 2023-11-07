@@ -34,7 +34,7 @@ void main() {
     const maybeJava = 'Java';
     const maybeFlutter = 'Flutter';
 
-    var favourite;
+    String favourite;
     favourite = '$maybeJava and $maybeFlutter';
     favourite = 'Now I like $favourite';
 
