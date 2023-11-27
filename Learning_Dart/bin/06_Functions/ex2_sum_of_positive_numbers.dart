@@ -24,13 +24,8 @@ const list3 = <num>[];
 const list4 = [1, 2];
 const list5 = [-1, 1.4, 5, 2.1]; //bonus
 
-// num sum (List<num> numbers) {
-//     return numbers.where((number) => !number.isNegative)
-//     .fold(0, (sum, element) => sum + element);
-//   }
-
 num sum (List<num> numbers) {
-  final sum = 0;
+  num sum = 0;
   for (final i in numbers) {
     if (!i.isNegative) {
       sum += i;
