@@ -7,7 +7,7 @@ extension SpaceCounter on String {
   String countSpaces() {
     int spaceCount = 0;
 
-    for (int i = 0; i < this.length; i++) {
+    for (int i = 0; i < length; i++) {
       if (this[i] == ' ') {
         spaceCount++;
       }
