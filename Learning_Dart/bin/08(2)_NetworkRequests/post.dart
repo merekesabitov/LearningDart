@@ -1,4 +1,3 @@
-
 class Post {
   final int id;
   final String title;
@@ -8,7 +7,7 @@ class Post {
     required this.id,
     required this.title,
     required this.body,
-});
+  });
 
   factory Post.fromJson(Map<String, dynamic> json) {
     return Post(
