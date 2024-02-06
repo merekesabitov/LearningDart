@@ -16,4 +16,12 @@ class Post {
       body: json['body'] as String,
     );
   }
+
+  Map<String, dynamic> toJson () {
+      return {
+        'id': id,
+        'title': title,
+        'body': body,
+      };
+    }
 }
