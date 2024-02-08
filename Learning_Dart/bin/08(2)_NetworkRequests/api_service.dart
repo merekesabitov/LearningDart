@@ -4,9 +4,10 @@ import 'package:http/http.dart' as http;
 import 'post.dart';
 
 class APIService {
-  final url = Uri.parse('http://localhost:3000/posts');
+  
 
   Future<void> fetchPosts() async {
+    final url = Uri.parse('http://localhost:3000/posts');
     try {
       final response = await http.get(url);
 
@@ -34,6 +35,7 @@ class APIService {
   }
 
   Future<void> createPost(Post newPost) async {
+    final url = Uri.parse('http://localhost:3000/posts');
     try {
       final response = await http.post(
         url,
@@ -48,6 +50,31 @@ class APIService {
         throw HttpException(
             'Не удалось создать пост. Код сервера: ${response.statusCode}');
       }
+    } on SocketException {
+      print('Не удалось получить доступ к ресурсу');
+    } on FormatException {
+      print('Неправильный формат данных');
+    } catch (error) {
+      print(error);
+    }
+  }
+
+  Future<void> updatePost(int postID, Post updatedPost) async {
+    final url = Uri.parse('http://localhost:3000/posts/$postID');
+
+    try {
+      final response = await http.put(
+        url,
+        headers: {'Content-Type': 'application/json'},
+        body: json.encode(updatedPost.toJson()),
+      );
+
+      if (response.statusCode != 200) {
+        throw HttpException(
+            'Не удалось обновить пост. Код сервера: ${response.statusCode}');
+      }
+      print('\nПост успешно обновлен! Post ID: $postID');
+
     } on SocketException {
       print('Не удалось получить доступ к ресурсу');
     } on FormatException {
