@@ -5,6 +5,8 @@ import 'main.dart';
 import 'post.dart';
 
 class APIService {
+
+  //GET request
   Future<void> fetchPosts() async {
     final url = Uri.parse('http://localhost:3000/posts');
     try {
@@ -25,6 +27,9 @@ class APIService {
         print(
             '\nPOST ID: ${i.id}, \nTitle: ${i.title}, \nDescription: ${i.body}');
       }
+
+      print('\nСписок ID существующих постов: $existKeys');
+
     } on SocketException {
       print('Не удалось получить доступ к ресурсу');
     } on FormatException {
@@ -34,7 +39,10 @@ class APIService {
     }
   }
 
+  //POST request
   Future<void> createPost(Post newPost) async {
+    print('\n--------------------------------------\nСоздание нового поста...');
+
     final url = Uri.parse('http://localhost:3000/posts');
     bool idIsExist = existKeys.contains(newPost.id);
 
@@ -68,7 +76,10 @@ class APIService {
     }
   }
 
+  //PUT request
   Future<void> updatePost(String postID, Post updatedPost) async {
+
+    print('\n---------------------------\nОбновление поста с ID: $postID...');
     final url = Uri.parse('http://localhost:3000/posts/$postID');
 
     try {
@@ -83,6 +94,8 @@ class APIService {
             'Не удалось обновить пост. Код сервера: ${response.statusCode}');
       }
       print('\nПост успешно обновлен! Post ID: $postID');
+      print('\n---------------------------\nПолучение обновленного списка постов...');
+      await APIService().fetchPosts();
     } on SocketException {
       print('Не удалось получить доступ к ресурсу');
     } on FormatException {
