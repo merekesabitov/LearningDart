@@ -17,5 +17,9 @@ void main() async {
   final updateID = '3';
   final updatePost = Post(id: updateID, title: 'Updated Post 3', body: 'Updated body of Post 3');
   await APIService().updatePost(updateID, updatePost);
+
+  //PUT request
+  final deleteID = '3';
+  await APIService().deletePost(postID: deleteID);
   
 }
