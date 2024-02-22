@@ -2,7 +2,7 @@ import 'dart:async';
 
 void main() async {
   //await readStreamAsyncForLoop();
-  //readStream();
+  readStream();
 }
 
 Future<void> readStreamAsyncForLoop() async {
@@ -26,14 +26,18 @@ void readStream() {
   final stream = Stream.periodic(Duration(seconds: 1), (tick) {
     if (tick == 4) throw Exception('Исключение в событии');
     return tick;
-  }).take(5);
+  }).take(6);
 
   print('Поток запущен');
 
-  subscription = stream.listen((data) => print('Получено: $data'),
-      onDone: () => print('Все события завершены'),
-      onError: (Object error) => print(error),
-      cancelOnError: true);
+  subscription = stream
+      .map((number) => number * 10)
+      .where((number) => number % 2 == 0)
+      .take(4)
+      .listen((data) => print('Получено: $data'),
+          onDone: () => print('Все события завершены'),
+          onError: (Object error) => print(error),
+          cancelOnError: true);
 
   // Future.delayed(Duration(seconds: 3), () {
   //   subscription?.isPaused;
